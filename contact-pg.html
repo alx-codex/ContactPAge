@@ -2,11 +2,22 @@
 <html>
 <head>
 <title>Save Web Form Data to Spreadsheets - Contact Form</title>
+<style>
+  body{
+    background-color:powderblue;
+  }
+</style>
 
-<script
+<!-- javascript to send email -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script> 
+	<script src="index.js"></script> 
+
+<script>
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous">
+</script>
+
 <script>
 function SubForm (){
     $.ajax({
@@ -21,9 +32,15 @@ function SubForm (){
         }
     });
 }
+
+</script>
+<script src="https://smtpjs.com/v3/smtp.js">
 </script>
 </head>
 <body>
+  <h1>
+    <div class="heading" style="text-align:center;">Contact US</div>
+  </h1>
   <form id= "myForm">
   
     <label>First Name</label>
@@ -54,6 +71,34 @@ function SubForm (){
     <br/>
     <br/>
   </form> 
-  <button onclick="SubForm()">Submit</button>
+  <!-- <button onclick="SubForm();sendEmail()">Submit</button> -->
+  <button onclick="submit_form(this.form)">Submit</button>
+  
+<script>
+  function submit_form(form){
+    document.form.action = 'SubForm()';				
+    document.form.submit();
+              
+    document.form.action = 'SendEmail()';
+    document.form.submit(); 
+    }
+</script>
+
+<script>
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username : "alexthomas12494@gmail.com",
+      Password : "pwuwraycebhpzcbh",
+      To : 'alexthomas12494@gmail.com',
+      From : "alexthomas12494@gmail.com",
+      Subject : "Confirmatiom Mail",
+      Body : "Thank you for Sending us the Feedback",
+      }).then(
+        message => alert("That you for Contacting US!!")
+      );
+</script>
+  }
+
+
 </body>
 </html>
