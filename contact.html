@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Save Web Form Data to Spreadsheets - Contact Form</title>
-<style>
-  body{
-  background-color:powderblue;
-  }
-</style>
+  <title>Save Web Form Data to Spreadsheets - Contact Form</title>
+  <style>
+    body {
+      background-color: powderblue;
+    }
+  </style>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
 
-<!-- Script to submit form to Google Sheets -->
-<script>
-function SubForm (){
-    $.ajax({
-        url:'https://api.apispreadsheets.com/data/7739/',
-        type:'post',
-        data:$("#myForm").serializeArray(),
-        function: sendEmail(),
-        success: function(){
+  <!-- Script to submit form to Google Sheets -->
+  <script>
+    function SubForm() {
+      $.ajax({
+        url: 'https://api.apispreadsheets.com/data/7739/',
+        type: 'post',
+        data: $("#myForm").serializeArray(),
+        success: function () {
+          sendEmail()
           alert("Form Submitted and Email sent")
         },
-        error: function(){
+        error: function () {
           alert("There was an error :(")
         }
-    });
-}
-</script>
+      });
+    }
+  </script>
 
 </head>
+
 <body>
 
   <h1>
     <div class="heading" style="text-align:center;">Contact US</div>
   </h1>
-  <form id= "myForm" >
-  
+  <form id="myForm">
+
     <label>First Name</label><br>
     <input name="first_name"><br>
     <label>Last Name</label><br>
@@ -51,28 +52,31 @@ function SubForm (){
     <label>Reason</label><br>
     <textarea name="reason"></textarea><br><br>
     <!-- <input type="submit"  value="SUBMIT"> -->
-  </form> 
+  </form>
   <button type="submit" value="submit" onclick="SubForm()">Submit</button>
 
 
 
 
   <!-- Script to send email to my email id  -->
-  <script src="https://smtpjs.com/v3/smtp.js"></script> 
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script type="text/javascript">
-    function sendEmail() { 
-    Email.send({
-    Host: "smtp.gmail.com",
-    Username : "alexthomas12494@gmail.com",
-    Password : "pwuwraycebhpzcbh",
-    To : 'alexthomas12494@gmail.com',
-    From : "alexthomas12494@gmail.com",
-    Subject : "Confirmatiom Mail",
-    Body : "Thank you for Contacting Alex Enterprises",
-    }).then(
-    message => alert("Email Sent")
-    );}
+    function sendEmail() {
+      var mail = document.getElementById("email").value
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "alexthomas12494@gmail.com",
+        Password: "pwuwraycebhpzcbh",
+        To: mail,
+        From: "alexthomas12494@gmail.com",
+        Subject: "Confirmatiom Mail",
+        Body: "Thank you for Contacting Alex Enterprises",
+      }).then(
+        message => alert("Email Sent")
+      )
+    }
   </script>
 
 </body>
+
 </html>
