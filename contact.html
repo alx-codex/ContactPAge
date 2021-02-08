@@ -6,6 +6,63 @@
   body{
   background-color:powderblue;
   }
+
+  input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=tel], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=place], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.button[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -39,33 +96,40 @@ function SubForm (){
   <form id= "myForm" >
   
     <label>First Name</label><br>
-    <input name="first_name"><br>
+    <input name="first_name" type="text"><br>
+
     <label>Last Name</label><br>
-    <input name="last_name"><br>
+    <input name="last_name" type ="text"><br>
+
     <label>Email</label><br>
     <input name="email" type="email" id="email"><br>
+
     <label>Mobile</label><br>
-    <input name="mobile"><br>
+    <input name="mobile" type ="tel"><br>
+
     <label>Place</label><br>
-    <input name="place"><br>
+    <input name="place" type="place"><br>
+
     <label>Reason</label><br>
-    <textarea name="reason"></textarea><br><br>
+    <textarea name="reason" type="text"></textarea><br><br>
+
     <!-- <input type="submit"  value="SUBMIT"> -->
   </form> 
-  <button type="submit" value="submit" onclick="SubForm()">Submit</button>
+  <button class ="button" type="submit" value="submit" onclick="SubForm()">Submit</button>
 
 
+  <!--  to send email to my emailid  -->
 
-
-  <!-- Script to send email to my email id  -->
   <script src="https://smtpjs.com/v3/smtp.js"></script> 
   <script type="text/javascript">
+
     function sendEmail() { 
+    let email = document.getElementById("email").value
     Email.send({
     Host: "smtp.gmail.com",
     Username : "alexthomas12494@gmail.com",
     Password : "pwuwraycebhpzcbh",
-    To : 'alexthomas12494@gmail.com',
+    To : email,
     From : "alexthomas12494@gmail.com",
     Subject : "Confirmatiom Mail",
     Body : "Thank you for Contacting Alex Enterprises",
