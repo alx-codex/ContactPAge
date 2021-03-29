@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Contact US</title>
-        <style>
+<head>
+<title>Save Web Form Data to Spreadsheets - Contact Form</title>
+
+  <style>
             body {
                 background-color:powderblue;
                 }
@@ -13,33 +15,95 @@
                 }
 
         </style>
-    </head>
-    <body>
-        <h1><div class="heading" style="text-align:center;">Contact US</div></h1>
-        <div id="contact">
-                <form action="/action_page.php" method="post">
-                    <label for="fname">First name:</label><br>
-                    <input type="text" id="fname" name="fname"  required><br>
 
-                    <label for="lname">Last name:</label><br>
-                    <input type="text" id="lname" name="lname" ><br><br>
+<script src="https://smtpjs.com/v3/smtp.js"></script> 
+<script src="index.js"></script> 
 
-                    <label for="mail">Email:</label><br>
-                    <input type="email" id="mail" name="mail"  required><br><br>
+<script>
+src="https://code.jquery.com/jquery-3.4.1.js"
+integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+crossorigin="anonymous">
+</script>
 
-                    <label for="mobile">Cell Phone:</label><br>
-                    <input type="text" id="mobile" name="mobile" ><br><br>
+<script>
+function SubForm (){
+  $.ajax({
+      url:'https://api.apispreadsheets.com/data/7739/',
+      type:'post',
+      data:$("#myForm").serializeArray(),
+      success: function(){
+        alert("Form Data Submitted :)")
+      },
+      error: function(){
+        alert("There was an error :(")
+      }
+  });
+}
+</script>
+</head>
+<body>
+  <h1>
+    <div class="heading" style="text-align:center;">Contact US</div>
+  </h1>
+  <form id= "myForm">
+  
+    <label>First Name</label>
+    <br/>
+    <input name="first_name" />
+    <br/>
+    <label>Last Name</label>
+    <br/>
+    <input name="last_name" />
+    <br/>
+    <label>Email</label>
+    <br/>
+    <input name="email" />
+    <br/>
+    <label>Mobile</label>
+    <br/>
+    <input name="mobile" />
+    <br/>
+    <label>Place</label>
+    <br/>
+    <input name="place" />
+    <br/>
+    
+    <label>Reason</label>
+    <br/>
+    <textarea name="reason">
+    </textarea>
+    <br/>
+    <br/>
+    <button onclick=submit_form() && SendEmail()>Submit</button>
+  </form> 
+  <!-- <button onclick="SubForm();sendEmail()">Submit</button> -->
+  <!-- <button onclick="submit_form(this.form)">Submit</button> -->
+  
+<script>
+  function submit_form(form){
+    document.form.action = 'SubForm()';				
+    document.form.submit();
+              
+    document.form.action = 'SendEmail()';
+    document.form.submit(); 
+    }
+</script>
 
-                    <label for="address">Place:</label><br>
-                    <input type="text" id="address" name="mobile"  required><br><br>
+<script>
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username : "alexthomas12494@gmail.com",
+      Password : "pwuwraycebhpzcbh",
+      To : 'sherene.antony@gmail.com',
+      From : "alexthomas12494@gmail.com",
+      Subject : "Confirmatiom Mail",
+      Body : "Thank you for Sending us the Feedback",
+      }).then(
+        message => alert("That you for Contacting US!!")
+      );
+</script>
+  
 
-                    <label for="reason">Reason:</label><br>
-                    <input type="text" id="reason" name="mobile"  required><br><br>
 
-                    <input type="submit" value="Submit">
-                  </form> 
-                  
-        </div>
-
-    </body>
+</body>
 </html>
